@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Gradient Descent"""
 
+import numpy as np
+from th.th_costs import compute_loss
+
 def compute_gradient(y, tx, w):
     """Compute the gradient."""
     # ***************************************************
@@ -16,7 +19,17 @@ def compute_gradient(y, tx, w):
 
 
 def gradient_descent(y, tx, initial_w, max_iters, gamma):
-    """Gradient descent algorithm."""
+    """Gradient descent algorithm.
+    
+    Returns
+    -------
+    losses : list of all losses for each step, 
+        get losses[len(losses)-1] for last loss computed
+    ws : list of arrays of computed ws at each step, 
+        get last (best computed) ws with ws[len(ws)-1] 
+        whith which you get an array of 
+        [w0, w1, ...(if more parameters)]
+    """
     # Define parameters to store w and loss
     ws = [initial_w]
     losses = []
@@ -41,7 +54,7 @@ def gradient_descent(y, tx, initial_w, max_iters, gamma):
         # store w and loss
         ws.append(w)
         losses.append(loss)
-        print("Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
-              bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
+        #print("Gradient Descent({bi}/{ti}): loss={l}, w0={w0}, w1={w1}".format(
+        #      bi=n_iter, ti=max_iters - 1, l=loss, w0=w[0], w1=w[1]))
 
     return losses, ws
